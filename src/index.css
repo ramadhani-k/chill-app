@@ -1,0 +1,22 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Daftarkan warna kustom khas CHILL */
+  --color-chill-dark: #0b0c0f;
+  --color-chill-card: rgba(24, 26, 28, 0.84);
+  --color-chill-button: #3b3d46;
+  --color-chill-button-hover: #4e515c;
+
+  /* Font Lato */
+  --font-lato: 'Lato', sans-serif;
+}
+
+/* Reset dasar aplikasi agar Preflight Tailwind tidak merusak layout kartu login */
+body {
+  font-family: var(--font-lato);
+  background-color: var(--color-chill-dark);
+  min-height: 100vh;
+  margin: 0;
+}
