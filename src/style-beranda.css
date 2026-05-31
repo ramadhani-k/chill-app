@@ -682,49 +682,58 @@
         }
 
         .movie-grid {
-            display: grid !important;
-            grid-auto-flow: column;
-            /* Memaksa semua kartu berjejer terus ke kanan dalam 1 baris */
-            overflow-x: auto !important;
-            /* Menghidupkan scroll horizontal */
+            /* 1. Kita ubah jadi flex agar browser HP tidak bingung membaca koordinat geser */
+            display: flex !important;
+            flex-direction: row !important;
 
-            /* ─── PERBAIKAN SCROLL MACET ─── */
-            /* pan-y artinya: Izinkan jari melakukan scroll vertikal halaman secara normal, 
-           dan serahkan scroll horizontal ke komponen ini */
-            touch-action: pan-y !important;
+            /* 2. Berikan gap antar kartu secara horizontal */
+            gap: 16px !important;
+            width: 100% !important;
 
-            scroll-snap-type: x mandatory;
-            /* Efek magnet saat swipe */
-            padding-bottom: 8px;
-            /* Ruang sedikit di bawah agar bayangan/scrollbar tidak mepet */
+            /* 3. Hidupkan scroll horizontal secara mutlak */
+            overflow-x: scroll !important;
+            overflow-y: hidden !important;
+
+            /* 4. BEBASKAN sentuhan jari. Kita hapus touch-action: pan-y, 
+              kita ganti jadi auto agar browser HP bebas menggerakkan ke segala arah */
+            touch-action: auto !important;
+
+            /* 5. Matikan dulu magnet snap-nya untuk memastikan apakah ini yang bikin macet */
+            scroll-snap-type: none !important;
+
+            padding-bottom: 12px !important;
+
+            /* Sembunyikan scrollbar bawaan murni agar kembali bersih */
+            &::-webkit-scrollbar {
+                display: none !important;
+            }
         }
 
-        /* Hidupkan scrollbar tipis agar pengguna mouse di laptop/inspect tetap bisa geser */
-        .movie-grid::-webkit-scrollbar {
-            display: block !important;
-            height: 4px;
-        }
-
-        .movie-grid::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-        }
-
+        /* 6. Atur ukuran kartu landscape secara pas (mengambil 65% lebar layar) */
         .landscape-grid {
-            /* Tiap kartu landscape mengambil 65% lebar layar HP. 
-           Kartu ke-2 otomatis akan terpotong setengah di ujung kanan! */
-            grid-auto-columns: 65%;
+            display: flex !important;
         }
 
+        .landscape-grid .movie-card {
+            flex: 0 0 65% !important;
+            /* Mencegah kartu menyusut, paksa konstan di 65% */
+            max-width: 65% !important;
+        }
+
+        /* 7. Atur ukuran kartu portrait secara pas (mengambil 38% lebar layar) */
         .portrait-grid {
-            /* Tiap kartu portrait mengambil 38% lebar layar HP. 
-           Kartu berikutnya dijamin akan kepotong manis di ujung kanan! */
-            grid-auto-columns: 38%;
+            display: flex !important;
+        }
+
+        .portrait-grid .movie-card {
+            flex: 0 0 38% !important;
+            /* Mencegah kartu menyusut, paksa konstan di 38% */
+            max-width: 38% !important;
         }
 
         .movie-card {
-            scroll-snap-align: start;
-            /* Magnet berhenti di awal kartu */
+            /* Matikan juga snap align-nya sementara */
+            scroll-snap-align: none !important;
         }
 
         /* Nonaktifkan popover hover berlebih di seluler agar tidak mengganggu usabilitas tap */
