@@ -115,11 +115,14 @@
         &::before {
             content: "";
             position: absolute;
-            top: -12px;      /* Ukurannya disamakan dengan margin-top menu */
+            top: -12px;
+            /* Ukurannya disamakan dengan margin-top menu */
             left: 0;
             width: 100%;
-            height: 12px;     /* Menutupi celah kosong 12px */
-            background-color: transparent; /* Dibuat transparan agar tidak kelihatan */
+            height: 12px;
+            /* Menutupi celah kosong 12px */
+            background-color: transparent;
+            /* Dibuat transparan agar tidak kelihatan */
         }
     }
 
@@ -679,15 +682,49 @@
         }
 
         .movie-grid {
-            overflow-x: auto;
+            display: grid !important;
+            grid-auto-flow: column;
+            /* Memaksa semua kartu berjejer terus ke kanan dalam 1 baris */
+            overflow-x: auto !important;
+            /* Menghidupkan scroll horizontal */
+
+            /* ─── PERBAIKAN SCROLL MACET ─── */
+            /* pan-y artinya: Izinkan jari melakukan scroll vertikal halaman secara normal, 
+           dan serahkan scroll horizontal ke komponen ini */
+            touch-action: pan-y !important;
+
+            scroll-snap-type: x mandatory;
+            /* Efek magnet saat swipe */
+            padding-bottom: 8px;
+            /* Ruang sedikit di bawah agar bayangan/scrollbar tidak mepet */
+        }
+
+        /* Hidupkan scrollbar tipis agar pengguna mouse di laptop/inspect tetap bisa geser */
+        .movie-grid::-webkit-scrollbar {
+            display: block !important;
+            height: 4px;
+        }
+
+        .movie-grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
         }
 
         .landscape-grid {
-            grid-template-columns: repeat(4, 200px);
+            /* Tiap kartu landscape mengambil 65% lebar layar HP. 
+           Kartu ke-2 otomatis akan terpotong setengah di ujung kanan! */
+            grid-auto-columns: 65%;
         }
 
         .portrait-grid {
-            grid-template-columns: repeat(5, 130px);
+            /* Tiap kartu portrait mengambil 38% lebar layar HP. 
+           Kartu berikutnya dijamin akan kepotong manis di ujung kanan! */
+            grid-auto-columns: 38%;
+        }
+
+        .movie-card {
+            scroll-snap-align: start;
+            /* Magnet berhenti di awal kartu */
         }
 
         /* Nonaktifkan popover hover berlebih di seluler agar tidak mengganggu usabilitas tap */
