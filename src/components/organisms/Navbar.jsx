@@ -1,4 +1,3 @@
-import React from 'react';
 import DropdownProfile from '../molecules/DropdownProfile';
 import { Link } from 'react-router-dom';
 

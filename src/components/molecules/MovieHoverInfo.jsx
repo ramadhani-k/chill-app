@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function MovieHoverInfo() {
     return (
         <div className="card-hover-info">

@@ -1,4 +1,3 @@
-import React from 'react';
 import MovieHoverInfo from '../molecules/MovieHoverInfo';
 
 export default function MovieCard({ title, image, isWide = false, badge, isInteractive = false }) {
