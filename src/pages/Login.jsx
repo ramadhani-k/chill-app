@@ -1,4 +1,3 @@
-import React from 'react';
 import LoginForm from '../components/organisms/LoginForm';
 import Button from '../components/atoms/Button';
 

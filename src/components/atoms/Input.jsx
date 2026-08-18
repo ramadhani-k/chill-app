@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Input({ id, type = 'text', placeholder, required = false, ...props }) {
     return (
         <input

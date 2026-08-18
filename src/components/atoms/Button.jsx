@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Button({ type = 'button', variant = 'primary', onClick, children }) {
     const baseStyle = "w-full py-2.5 md:py-3 px-4 rounded-[30px] text-[13px] md:text-sm transition-all duration-300 flex justify-center items-center gap-2 cursor-pointer";
 

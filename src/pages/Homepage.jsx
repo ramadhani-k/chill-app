@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../components/organisms/Navbar';
 import HeroBanner from '../components/organisms/HeroBanner';
 import MovieSection from '../components/organisms/MovieSection';

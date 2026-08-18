@@ -1,12 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 
 export default function RegisterForm() {
+    const navigate = useNavigate();
+
     const handleRegister = (e) => {
         e.preventDefault();
-        alert('Logika pendaftaran akun diproses di sini!');
+        navigate('/beranda');
     };
 
     return (

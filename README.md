@@ -1,16 +1,81 @@
-# React + Vite
+# CHILL - Movie Streaming Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based movie application featuring user authentication pages (Login and Register) and an interactive Homepage with movie carousels and details.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Authentication**:
+  - Login page with username and password input toggle.
+  - Register page with password confirmation toggle.
+  - Form submission redirects smoothly to the Homepage (`/beranda`).
+- **Homepage (`/beranda`)**:
+  - Sticky Navigation Bar with profile dropdown menu.
+  - Hero banner with action buttons.
+  - Categorized horizontal movie carousels with smooth arrow navigation.
+  - Interactive movie hover cards displaying additional details.
+- **Responsive Layout**: Designed for both desktop and mobile viewports.
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Ensure you have Node.js (v18 or higher recommended) and `npm` installed on your system.
 
-## Expanding the ESLint configuration
+## Setup & Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Clone the repository** (if not already done):
+   ```bash
+   git clone <repository-url>
+   cd chill-app
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+## Development
+
+To start the Vite development server locally:
+
+```bash
+npm run dev
+```
+
+Open your browser and navigate to `http://localhost:5173` (or the URL provided in the terminal).
+
+## Building for Production
+
+To compile and build the application for production:
+
+```bash
+npm run build
+```
+
+To preview the built assets locally:
+
+```bash
+npm run preview
+```
+
+## Linting
+
+To run ESLint check across the codebase:
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── assets/          # Static assets
+├── components/
+│   ├── atoms/       # Base components (Button, Input, Label, MovieCard)
+│   ├── molecules/   # Compound components (DropdownProfile, InputGroup, MovieHoverInfo)
+│   └── organisms/   # Complex layout components (HeroBanner, LoginForm, MovieSection, Navbar, RegisterForm)
+├── pages/           # Page components (Homepage, Login, Register)
+├── App.jsx          # Router & route definitions
+├── main.jsx         # Application entry point
+├── index.css        # Global CSS & Tailwind styling
+└── style-beranda.css# Homepage & carousel styling
+```

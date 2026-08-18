@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Label from '../atoms/Label';
 import Input from '../atoms/Input';
 

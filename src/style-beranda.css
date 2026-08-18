@@ -346,9 +346,9 @@
         display: grid;
         gap: 16px;
         width: 100%;
-        overflow: visible;
-        /* Tetap visible agar popover melayang tidak terpotong */
-        touch-action: none;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        touch-action: pan-x;
     }
 
     .movie-grid::-webkit-scrollbar {

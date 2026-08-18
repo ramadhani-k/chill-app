@@ -1,12 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 
 export default function LoginForm() {
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert('Logika autentikasi login diproses di sini!');
+        navigate('/beranda');
     };
 
     return (
