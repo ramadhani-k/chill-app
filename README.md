@@ -1,6 +1,6 @@
 # CHILL - Movie Streaming Web Application
 
-A React-based movie application featuring user authentication pages (Login and Register) and an interactive Homepage with movie carousels and details.
+A React-based movie application featuring user authentication pages (Login and Register), an interactive Homepage with movie carousels and details, and a Movie CRUD management page.
 
 ## Features
 
@@ -13,6 +13,12 @@ A React-based movie application featuring user authentication pages (Login and R
   - Hero banner with action buttons.
   - Categorized horizontal movie carousels with smooth arrow navigation.
   - Interactive movie hover cards displaying additional details.
+- **Movie Management / CRUD Page (`/crud`)**:
+  - **Create**: Add new movies with title and genre selection.
+  - **Read**: Display all registered movies in a structured table format with title, genre badge, and ID.
+  - **Update**: Edit existing movie details (title and genre) with inline form state updating.
+  - **Delete**: Remove movies from the list instantly.
+  - Styled with Tailwind CSS matching the application dark theme aesthetics.
 - **Responsive Layout**: Designed for both desktop and mobile viewports.
 
 ## Prerequisites
@@ -73,7 +79,7 @@ src/
 │   ├── atoms/       # Base components (Button, Input, Label, MovieCard)
 │   ├── molecules/   # Compound components (DropdownProfile, InputGroup, MovieHoverInfo)
 │   └── organisms/   # Complex layout components (HeroBanner, LoginForm, MovieSection, Navbar, RegisterForm)
-├── pages/           # Page components (Homepage, Login, Register)
+├── pages/           # Page components (Homepage, Login, Register, MovieCrud)
 ├── App.jsx          # Router & route definitions
 ├── main.jsx         # Application entry point
 ├── index.css        # Global CSS & Tailwind styling

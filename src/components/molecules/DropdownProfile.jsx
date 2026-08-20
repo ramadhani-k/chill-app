@@ -12,7 +12,7 @@ export default function DropdownProfile() {
                 // Tutup otomatis jika klik di luar area dropdown
                 onBlur={() => setTimeout(() => setIsOpen(false), 200)} 
             >
-                <img src="images/profile.png" alt="User Profile" className="avatar" />
+                <img src="/images/profile.png" alt="User Profile" className="avatar" />
                 
                 {/* SVG Chevron pengganti gambar lama */}
                 <svg 
@@ -28,7 +28,7 @@ export default function DropdownProfile() {
                 <a href="#" className="dropdown-item">👤 Profil Saya</a>
                 <a href="#" className="dropdown-item">⭐ Upgrade Premium</a>
                 <Link to="/login" className="dropdown-item logout-item">
-                    <img src="images/log-out.png" alt="Logout" className="logout-icon-img" /> Keluar
+                    <img src="/images/log-out.png" alt="Logout" className="logout-icon-img" /> Keluar
                 </Link>
             </div>
         </div>

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Homepage from './pages/Homepage';
+import MovieCrud from './pages/MovieCrud';
 
 function App() {
   return (
@@ -13,11 +14,14 @@ function App() {
         {/* Rute Login */}
         <Route path="/login" element={<Login />} />
         
-        {/* Rute Register (Cukup SATU baris ini saja, hapus yang ada Navigate-nya) */}
+        {/* Rute Register */}
         <Route path="/register" element={<Register />} />
         
         {/* Rute Beranda */}
         <Route path="/beranda" element={<Homepage />} />
+
+        {/* Rute CRUD Kelola Film */}
+        <Route path="/crud" element={<MovieCrud />} />
       </Routes>
     </Router>
   );
