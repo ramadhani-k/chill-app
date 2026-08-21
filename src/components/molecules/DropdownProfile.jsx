@@ -9,12 +9,12 @@ export default function DropdownProfile() {
             <button
                 className="profile-trigger"
                 onClick={() => setIsOpen(!isOpen)}
-                // Tutup otomatis jika klik di luar area dropdown
+                // tutup dropdown kalau klik di luar
                 onBlur={() => setTimeout(() => setIsOpen(false), 200)} 
             >
                 <img src="/images/profile.png" alt="User Profile" className="avatar" />
                 
-                {/* SVG Chevron pengganti gambar lama */}
+                {/* ikon panah */}
                 <svg 
                     viewBox="0 0 24 24" 
                     className="arrow-icon" 

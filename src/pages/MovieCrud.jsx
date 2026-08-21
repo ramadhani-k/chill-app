@@ -2,30 +2,22 @@ import { useState } from 'react';
 import Navbar from '../components/organisms/Navbar';
 import '../style-beranda.css';
 
-export default function MovieCrud() {
-  // Initial state with sample movie objects (id, title, genre)
-  const [movies, setMovies] = useState([
-    { id: 1, title: "Don't Look Up", genre: 'Komedi' },
-    { id: 2, title: 'All Of Us Are Dead', genre: 'Horor' },
-    { id: 3, title: 'Blue Lock', genre: 'Anime' },
-    { id: 4, title: 'A Man Called Otto', genre: 'Drama' },
-  ]);
-
-  // Form input states
+export default function MovieCrud({ movies, setMovies }) {
+  // state untuk form
   const [title, setTitle] = useState('');
   const [genre, setGenre] = useState('');
   const [editingId, setEditingId] = useState(null);
 
-  // Available genre options
+  // pilihan genre
   const genres = ['Aksi', 'Anak-anak', 'Anime', 'Drama', 'Horor', 'Komedi', 'Romantis', 'Sci-Fi', 'Thriller'];
 
-  // Handle Form Submission (Create or Update)
+  // simpan data film baru atau edit
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim() || !genre.trim()) return;
 
     if (editingId !== null) {
-      // Update existing movie
+      // ubah film lama
       setMovies(
         movies.map((movie) =>
           movie.id === editingId ? { ...movie, title, genre } : movie
@@ -33,7 +25,7 @@ export default function MovieCrud() {
       );
       setEditingId(null);
     } else {
-      // Create new movie
+      // tambah film baru
       const newMovie = {
         id: Date.now(),
         title,
@@ -42,26 +34,26 @@ export default function MovieCrud() {
       setMovies([...movies, newMovie]);
     }
 
-    // Reset form fields
+    // reset form
     setTitle('');
     setGenre('');
   };
 
-  // Start Editing
+  // isi form untuk edit
   const handleEdit = (movie) => {
     setEditingId(movie.id);
     setTitle(movie.title);
     setGenre(movie.genre);
   };
 
-  // Cancel Editing
+  // batal edit
   const handleCancel = () => {
     setEditingId(null);
     setTitle('');
     setGenre('');
   };
 
-  // Delete Movie
+  // hapus film
   const handleDelete = (id) => {
     setMovies(movies.filter((movie) => movie.id !== id));
   };
@@ -77,7 +69,7 @@ export default function MovieCrud() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Form Card (Create / Update) */}
+          {/* form tambah atau edit */}
           <div className="bg-[#181a1c] p-6 rounded-xl border border-gray-800 h-fit shadow-lg">
             <h2 className="text-xl font-semibold mb-4 text-[#00c853]">
               {editingId !== null ? 'Edit Film' : 'Tambah Film Baru'}
@@ -132,7 +124,7 @@ export default function MovieCrud() {
             </form>
           </div>
 
-          {/* Movie List Table Card (Read / Actions) */}
+          {/* tabel daftar film */}
           <div className="md:col-span-2 bg-[#181a1c] p-6 rounded-xl border border-gray-800 shadow-lg">
             <h2 className="text-xl font-semibold mb-4 text-white flex justify-between items-center">
               <span>Daftar Film</span>
