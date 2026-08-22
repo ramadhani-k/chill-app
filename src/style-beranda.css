@@ -325,24 +325,28 @@
 }
 
 .movie-grid {
-    display: grid;
+    display: flex;
+    flex-direction: row;
     gap: 16px;
     width: 100%;
     overflow-x: auto;
     scroll-behavior: smooth;
     touch-action: pan-x;
+    flex-wrap: nowrap;
 }
 
 .movie-grid::-webkit-scrollbar {
     display: none;
 }
 
-.landscape-grid {
-    grid-template-columns: repeat(4, minmax(240px, 1fr));
+.landscape-grid .movie-card {
+    flex: 0 0 calc(25% - 12px);
+    min-width: 240px;
 }
 
-.portrait-grid {
-    grid-template-columns: repeat(5, minmax(160px, 1fr));
+.portrait-grid .movie-card {
+    flex: 0 0 calc(20% - 13px);
+    min-width: 160px;
 }
 
 /* ==========================================

@@ -6,7 +6,7 @@ export default function Homepage({ movies = [] }) {
     // data film lanjutan dari props global
     const melanjutkanTontonData = movies.map((movie) => ({
         title: movie.title,
-        image: movie.image || '/images/dont-look-hor.png',
+        image: movie.image,
         badge: movie.badge
     }));
 

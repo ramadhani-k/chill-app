@@ -25,13 +25,13 @@ export default function MovieCrud({ movies, setMovies }) {
       );
       setEditingId(null);
     } else {
-      // tambah film baru
+      // tambah film baru (tambahkan di paling kiri / prepend)
       const newMovie = {
         id: Date.now(),
         title,
         genre,
       };
-      setMovies([...movies, newMovie]);
+      setMovies([newMovie, ...movies]);
     }
 
     // reset form
