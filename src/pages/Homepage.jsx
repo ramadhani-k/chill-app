@@ -2,48 +2,50 @@ import Navbar from '../components/organisms/Navbar';
 import HeroBanner from '../components/organisms/HeroBanner';
 import MovieSection from '../components/organisms/MovieSection';
 
-export default function Homepage() {
-    // Mock Data Film Terstruktur
-    const melanjutkanTontonData = [
-        { title: "Don't Look Up", image: "images/dont-look-hor.png" },
-        { title: "All Of Us Are Dead", image: "images/all-of-dead-hor.png", badge: "episode" },
-        { title: "Blue Lock", image: "images/blue-lock-hor.png" },
-        { title: "A Man Called Otto", image: "images/aman-called-otto-hor.png" },
-    ];
+export default function Homepage({ movies = [] }) {
+    // data film lanjutan dari props global
+    const melanjutkanTontonData = movies.map((movie) => ({
+        title: movie.title,
+        image: movie.image,
+        badge: movie.badge
+    }));
 
+    // data film top rating
     const topRatingData = [
-        { title: "Suzume", image: "images/suzume-pot.png" },
-        { title: "Jurassic World", image: "images/jurrasic-w-pot.png" },
-        { title: "Sonic 2", image: "images/sonic-2-pot.png" },
-        { title: "All Of Us Are Dead", image: "images/allofus-are-dead-potrait.png", badge: "episode", isInteractive: true },
-        { title: "Big Hero 6", image: "images/big-hero-potrait.png", badge: "top10" },
+        { title: "Suzume", image: "/images/suzume-pot.png" },
+        { title: "Jurassic World", image: "/images/jurrasic-w-pot.png" },
+        { title: "Sonic 2", image: "/images/sonic-2-pot.png" },
+        { title: "All Of Us Are Dead", image: "/images/allofus-are-dead-potrait.png", badge: "episode", isInteractive: true },
+        { title: "Big Hero 6", image: "/images/big-hero-potrait.png", badge: "top10" },
     ];
 
+    // data film trending
     const trendingData = [
-        { title: "The Tomorrow War", image: "images/the-tomorrow-war-potrait.png" },
-        { title: "Quantumania", image: "images/quantum-mania-potrait.png" },
-        { title: "Guardians of the Galaxy", image: "images/gog-potrait.png", badge: "top10" },
-        { title: "A Man Called Otto", image: "images/aman-called-otto-hor.png", badge: "top10" },
-        { title: "Little Mermaid", image: "images/little-mermaid-potrait.png" },
+        { title: "The Tomorrow War", image: "/images/the-tomorrow-war-potrait.png" },
+        { title: "Quantumania", image: "/images/quantum-mania-potrait.png" },
+        { title: "Guardians of the Galaxy", image: "/images/gog-potrait.png", badge: "top10" },
+        { title: "A Man Called Otto", image: "/images/aman-called-otto-hor.png", badge: "top10" },
+        { title: "Little Mermaid", image: "/images/little-mermaid-potrait.png" },
     ];
 
+    // data film rilis baru
     const rilisBaruData = [
-        { title: "Little Mermaid", image: "images/little-mermaid-potrait.png" },
-        { title: "Duty After School", image: "images/duty-after-school.png", badge: "episode" },
-        { title: "Big Hero 6", image: "images/big-hero-potrait.png", badge: "top10" },
-        { title: "All Of Us Are Dead", image: "images/allofus-are-dead-potrait.png" },
-        { title: "Missing", image: "images/missing-potrait.png" },
+        { title: "Little Mermaid", image: "/images/little-mermaid-potrait.png" },
+        { title: "Duty After School", image: "/images/duty-after-school.png", badge: "episode" },
+        { title: "Big Hero 6", image: "/images/big-hero-potrait.png", badge: "top10" },
+        { title: "All Of Us Are Dead", image: "/images/allofus-are-dead-potrait.png" },
+        { title: "Missing", image: "/images/missing-potrait.png" },
     ];
 
     return (
         <div className="homepage-wrapper">
-            {/* 1. Navbar */}
+            {/* navbar atas */}
             <Navbar />
 
-            {/* 2. Hero Banner */}
+            {/* banner utama */}
             <HeroBanner />
 
-            {/* 3. Konten Utama (Kumpulan Movie Sections) */}
+            {/* daftar section film */}
             <main className="content-container">
                 <MovieSection title="Melanjutkan Tonton Film" isWide={true} moviesData={melanjutkanTontonData} />
                 <MovieSection title="Top Rating Film dan Series Hari ini" moviesData={topRatingData} />
@@ -51,10 +53,10 @@ export default function Homepage() {
                 <MovieSection title="Rilis Baru" moviesData={rilisBaruData} />
             </main>
 
-            {/* 4. Footer Halaman */}
+            {/* bagian footer */}
             <footer className="footer">
                 <div className="footer-left">
-                    <img src="images/logo.png" alt="CHILL Logo" className="footer-logo" />
+                    <img src="/images/logo.png" alt="CHILL Logo" className="footer-logo" />
                     <p className="copyright">© 2026 CHILL. All rights reserved.</p>
                 </div>
                 <div className="footer-links">

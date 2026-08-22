@@ -1,17 +1,8 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap'); */
 
-
-
 /* ==========================================
     1. RESET DASAR & TEMA UTAMA
     ========================================== */
-/* * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Lato', sans-serif;
-    } */
-
 .homepage-wrapper {
     background-color: #121318;
     color: #ffffff;
@@ -19,736 +10,689 @@
     width: 100%;
     overflow-x: hidden;
     position: relative;
+}
 
-    /* ==========================================
+/* ==========================================
     2. NAVBAR UTAMA
     ========================================== */
-    .navbar {
-        width: 100%;
-        height: 70px;
-        background-color: #181a20;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 4%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
+.navbar {
+    width: 100%;
+    height: 70px;
+    background-color: #181a20;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-    .nav-left {
-        display: flex;
-        align-items: center;
-        gap: 40px;
-    }
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
 
-    .nav-logo {
-        height: 24px;
-        object-fit: contain;
-    }
+.nav-logo {
+    height: 24px;
+    object-fit: contain;
+}
 
-    .nav-menu {
-        display: flex;
-        gap: 24px;
-    }
+.nav-menu {
+    display: flex;
+    gap: 24px;
+}
 
-    .nav-menu a {
-        color: #b3b3b3;
-        text-decoration: none;
-        font-size: 14px;
-        transition: color 0.3s;
-    }
+.nav-menu a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
 
-    .nav-menu a:hover {
-        color: #ffffff;
-    }
+.nav-menu a:hover {
+    color: #ffffff;
+}
 
-    /* ==========================================
+/* ==========================================
     3. AREA DROPDOWN PROFIL
     ========================================== */
-    .dropdown-wrapper {
-        position: relative;
-    }
+.dropdown-wrapper {
+    position: relative;
+}
 
-    .profile-trigger {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: 0;
-        outline: none;
-    }
+.profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+}
 
-    .avatar {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
-    .arrow-icon {
-        width: 12px;
-        height: 12px;
-        opacity: 0.8;
-        transition: transform 0.2s ease;
-    }
+.arrow-icon {
+    width: 12px;
+    height: 12px;
+    opacity: 0.8;
+    transition: transform 0.2s ease;
+}
 
-    .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        margin-top: 12px;
-        background-color: #181a20;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        width: 180px;
-        padding: 8px 0;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-        display: none;
-        /* Default tersembunyi */
-        z-index: 1100;
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 12px;
+    background-color: #181a20;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    width: 180px;
+    padding: 8px 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    display: none;
+    /* Default tersembunyi */
+    z-index: 1100;
+}
 
-        &::before {
-            content: "";
-            position: absolute;
-            top: -12px;
-            /* Ukurannya disamakan dengan margin-top menu */
-            left: 0;
-            width: 100%;
-            height: 12px;
-            /* Menutupi celah kosong 12px */
-            background-color: transparent;
-            /* Dibuat transparan agar tidak kelihatan */
-        }
-    }
+.dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background-color: transparent;
+}
 
-    /* Navigasi Dropdown Interaktif murni via CSS hover & focus-within */
-    .dropdown-wrapper:hover .dropdown-menu,
-    .dropdown-wrapper:focus-within .dropdown-menu,
-    .dropdown-wrapper.active .dropdown-menu {
-        display: block;
-    }
+/* Navigasi Dropdown Interaktif murni via CSS hover & focus-within */
+.dropdown-wrapper:hover .dropdown-menu,
+.dropdown-wrapper:focus-within .dropdown-menu,
+.dropdown-wrapper.active .dropdown-menu {
+    display: block;
+}
 
-    .dropdown-wrapper:hover .arrow-icon,
-    .dropdown-wrapper:focus-within .arrow-icon,
-    .dropdown-wrapper.active .arrow-icon {
-        transform: rotate(180deg);
-    }
+.dropdown-wrapper:hover .arrow-icon,
+.dropdown-wrapper:focus-within .arrow-icon,
+.dropdown-wrapper.active .arrow-icon {
+    transform: rotate(180deg);
+}
 
-    .dropdown-item {
-        display: flex;
-        align-items: center;
-        padding: 10px 16px;
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 13px;
-        gap: 10px;
-    }
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    gap: 10px;
+}
 
-    .dropdown-item:hover {
-        background-color: rgba(255, 255, 255, 0.05);
-    }
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
 
-    .logout-icon-img {
-        width: 14px;
-        height: 14px;
-    }
+.logout-icon-img {
+    width: 14px;
+    height: 14px;
+}
 
-    /* ==========================================
+/* ==========================================
     4. HERO BANNER
     ========================================== */
-    .hero-banner {
-        width: 100%;
-        height: 85vh;
-        background: linear-gradient(to top, #121318 8%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.4) 100%),
-            url("/images/duty-after-school-hor.png") no-repeat center center/cover;
-        display: flex;
-        align-items: flex-end;
-        padding: 0 4% 60px 4%;
+.hero-banner {
+    width: 100%;
+    height: 85vh;
+    background: linear-gradient(to top, #121318 8%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.4) 100%),
+        url("/images/duty-after-school-hor.png") no-repeat center center/cover;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 4% 60px 4%;
+}
+
+.hero-container-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.hero-content-left {
+    max-width: 580px;
+}
+
+.hero-title {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.hero-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin-bottom: 24px;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-play {
+    padding: 10px 28px;
+    background-color: #0f4c81;
+    border: none;
+    border-radius: 24px;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.btn-play:hover {
+    background-color: #145f9e;
+}
+
+.btn-info {
+    padding: 10px 24px;
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.btn-info:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.info-icon-img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.age-tag {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-content-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.btn-mute {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mute-icon-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* ==========================================
+    5. KONTEN UTAMA (GRID & SLIDER)
+    ========================================== */
+.content-container {
+    padding: 0 4% 60px 4%;
+    margin-top: -20px;
+}
+
+.movie-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.arrow-btn {
+    position: absolute;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.arrow-btn:hover {
+    transform: scale(1.08);
+}
+
+.left-arrow {
+    left: -20px;
+}
+
+.right-arrow {
+    right: -20px;
+}
+
+.arrow-img-file {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+.movie-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    touch-action: pan-x;
+    flex-wrap: nowrap;
+}
+
+.movie-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.landscape-grid .movie-card {
+    flex: 0 0 calc(25% - 12px);
+    min-width: 240px;
+}
+
+.portrait-grid .movie-card {
+    flex: 0 0 calc(20% - 13px);
+    min-width: 160px;
+}
+
+/* ==========================================
+    6. KARTU FILM & BADGE-BADGE
+    ========================================== */
+.movie-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, z-index 0.2s step-end;
+    background-color: #1e2026;
+    z-index: 1;
+}
+
+.movie-card:hover {
+    transform: scale(1.02);
+    z-index: 50;
+    transition: transform 0.2s, z-index 0s step-start;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.badge {
+    position: absolute;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    z-index: 10;
+    color: #ffffff;
+    text-align: center;
+}
+
+.episode-badge {
+    top: 10px;
+    left: 10px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    background-color: #1e3a8a;
+}
+
+.top10-badge {
+    top: 0;
+    right: 12px;
+    width: 36px;
+    padding: 6px 0 8px 0;
+    background-color: #e50914;
+    font-size: 11px;
+    line-height: 1.2;
+    border-radius: 0 0 2px 2px;
+}
+
+/* ==========================================
+    7. SPESIAL: DETAIL HOVER KARTU INTERAKTIF
+    ========================================== */
+.interactive-card {
+    position: relative;
+}
+
+.interactive-card:hover {
+    overflow: visible !important;
+    z-index: 1000 !important;
+}
+
+.card-hover-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    background-color: #181a20;
+    border-radius: 12px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95);
+    transform: translate(-50%, -50%) scale(0.6);
+    transform-origin: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.interactive-card:hover .card-hover-info {
+    transform: translate(-50%, -50%) scale(1.25);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hover-banner-container {
+    width: 100%;
+    height: 174px;
+    position: relative;
+}
+
+.hover-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.hover-details {
+    padding: 16px;
+    background-color: #181a20;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.hover-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.buttons-left {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-hover-play {
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.btn-hover-play:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-hover-play svg {
+    width: 16px;
+    height: 16px;
+    fill: #000000;
+}
+
+.btn-hover-circle {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.btn-hover-circle:hover {
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-hover-circle svg {
+    width: 14px;
+    height: 14px;
+    fill: #ffffff;
+}
+
+.hover-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hover-age {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.hover-episodes {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.hover-genres {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 12px;
+    color: #b3b3b3;
+}
+
+.genre-dot {
+    width: 4px;
+    height: 4px;
+    background-color: #666666;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+/* ==========================================
+    8. FOOTER HALAMAN
+    ========================================== */
+.footer {
+    background-color: #121318;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 60px 4%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-logo {
+    height: 24px;
+    align-self: flex-start;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #666666;
+}
+
+.footer-links {
+    display: flex;
+    gap: 48px;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-col h4 {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.footer-col a {
+    color: #999999;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.footer-col a:hover {
+    color: #ffffff;
+}
+
+/* ==========================================
+    9. LAYOUT & RESPONSIVITAS SELULER (HP)
+    ========================================== */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
     }
 
-    .hero-container-bottom {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        /* Memastikan konten kiri dan tombol mute sejajar di dasar */
-    }
-
-    /* Blok Kiri Hero */
-    .hero-content-left {
-        max-width: 580px;
+    .arrow-btn {
+        display: none;
     }
 
     .hero-title {
-        font-size: 40px;
-        font-weight: 700;
-        margin-bottom: 12px;
+        font-size: 32px;
     }
 
-    .hero-desc {
-        font-size: 13px;
-        line-height: 1.6;
-        color: #e0e0e0;
-        margin-bottom: 24px;
-    }
-
-    .hero-actions {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .btn-play {
-        padding: 10px 28px;
-        background-color: #0f4c81;
-        /* Warna biru solid terang */
-        border: none;
-        border-radius: 24px;
-        color: #ffffff;
-        font-weight: 700;
-        cursor: pointer;
-        font-size: 13px;
-        transition: background 0.2s;
-    }
-
-    .btn-play:hover {
-        background-color: #145f9e;
-    }
-
-    .btn-info {
-        padding: 10px 24px;
-        background-color: rgba(255, 255, 255, 0.12);
-        /* Abu transparan halus */
-        backdrop-filter: blur(4px);
-        color: #ffffff;
-        border: none;
-        border-radius: 24px;
-        cursor: pointer;
-        font-size: 13px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: background 0.2s;
-    }
-
-    .btn-info:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .info-icon-img {
-        width: 18px;
-        height: 18px;
-        object-fit: contain;
-    }
-
-    .age-tag {
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        width: 36px;
-        height: 36px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        font-size: 12px;
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* Blok Kanan Hero */
-    .hero-content-right {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
-    .btn-mute {
-        background: none;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .mute-icon-img {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-    }
-
-    /* ==========================================
-    5. KONTEN UTAMA (GRID & SLIDER)
-    ========================================== */
-    .content-container {
-        padding: 0 4% 60px 4%;
-        margin-top: -20px;
-    }
-
-    .movie-section {
-        margin-bottom: 40px;
-    }
-
-    .section-title {
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 16px;
-    }
-
-    .slider-wrapper {
-        position: relative;
-        width: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    /* Tombol Navigasi Slider */
-    .arrow-btn {
-        position: absolute;
-        background: none;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 0;
-        z-index: 100;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: transform 0.2s ease;
-    }
-
-    .arrow-btn:hover {
-        transform: scale(1.08);
-    }
-
-    .left-arrow {
-        left: -20px;
-    }
-
-    .right-arrow {
-        right: -20px;
-    }
-
-    .arrow-img-file {
-        width: 44px;
-        height: 44px;
-        object-fit: contain;
-    }
-
-    /* Tata Letak Kisi Film */
     .movie-grid {
-        display: grid;
-        gap: 16px;
-        width: 100%;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        touch-action: pan-x;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 16px !important;
+        width: 100% !important;
+        overflow-x: scroll !important;
+        overflow-y: hidden !important;
+        touch-action: auto !important;
+        scroll-snap-type: none !important;
+        padding-bottom: 12px !important;
     }
 
     .movie-grid::-webkit-scrollbar {
-        display: none;
+        display: none !important;
     }
 
     .landscape-grid {
-        grid-template-columns: repeat(4, minmax(240px, 1fr));
+        display: flex !important;
+    }
+
+    .landscape-grid .movie-card {
+        flex: 0 0 65% !important;
+        max-width: 65% !important;
     }
 
     .portrait-grid {
-        grid-template-columns: repeat(5, minmax(160px, 1fr));
+        display: flex !important;
     }
 
-    /* ==========================================
-    6. KARTU FILM & BADGE-BADGE
-    ========================================== */
+    .portrait-grid .movie-card {
+        flex: 0 0 38% !important;
+        max-width: 38% !important;
+    }
+
     .movie-card {
-        position: relative;
-        border-radius: 8px;
-        overflow: hidden;
-        /* Default memotong ujung gambar */
-        cursor: pointer;
-        transition: transform 0.2s, z-index 0.2s step-end;
-        background-color: #1e2026;
-        /* Warna cadangan jika gambar gagal dimuat */
-        z-index: 1;
+        scroll-snap-align: none !important;
     }
 
-    .movie-card:hover {
-        transform: scale(1.02);
-        z-index: 50;
-        transition: transform 0.2s, z-index 0s step-start;
-    }
-
-    .movie-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        border-radius: 8px;
-        /* Pastikan gambar itu sendiri membulat */
-    }
-
-    /* Overlay Keterangan Kartu */
-    .card-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 12px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-        font-size: 12px;
-        font-weight: 700;
-    }
-
-    /* Penanda & Badge */
-    .badge {
-        position: absolute;
-        font-family: 'Lato', sans-serif;
-        font-weight: 700;
-        z-index: 10;
-        color: #ffffff;
-        text-align: center;
-    }
-
-    /* Badge Episode Baru (Kapsul Biru Pojok Kiri Atas) */
-    .episode-badge {
-        top: 10px;
-        left: 10px;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 11px;
-        background-color: #1e3a8a;
-    }
-
-    /* Badge Top 10 (Kotak Vertikal Merah Pojok Kanan Atas) */
-    .top10-badge {
-        top: 0;
-        right: 12px;
-        width: 36px;
-        padding: 6px 0 8px 0;
-        background-color: #e50914;
-        font-size: 11px;
-        line-height: 1.2;
-        border-radius: 0 0 2px 2px;
-    }
-
-    /* ==========================================
-    7. SPESIAL: DETAIL HOVER KARTU INTERAKTIF
-    ========================================== */
-    .interactive-card {
-        position: relative;
-    }
-
-    /* Saat di-hover, matikan overflow hidden parent agar popover bisa keluar batas */
-    .interactive-card:hover {
-        overflow: visible !important;
-        z-index: 1000 !important;
-        /* Membuat kartu ini melayang di atas semua elemen */
-    }
-
-    /* Container popover detail (Muncul secara melayang tepat di tengah kartu) */
     .card-hover-info {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 320px;
-        /* Lebar popover yang ideal & lebar melampaui card potrait */
-        background-color: #181a20;
-        border-radius: 12px;
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95);
-        transform: translate(-50%, -50%) scale(0.6);
-        transform-origin: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-            opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 9999;
-        overflow: hidden;
-        /* Potong konten di dalam popover saja */
+        display: none !important;
     }
 
-    /* Efek Hover memicu pembesaran dramatis & menembus batasan kartu */
-    .interactive-card:hover .card-hover-info {
-        transform: translate(-50%, -50%) scale(1.25);
-        /* Skala diperbesar menjadi 1.25 agar melayang megah */
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    /* Banner landscape bagian atas popover */
-    .hover-banner-container {
-        width: 100%;
-        height: 174px;
-        position: relative;
-    }
-
-    .hover-banner {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 12px 12px 0 0 !important;
-        /* Membulat hanya di sisi atas popover */
-    }
-
-    /* Kontainer teks & aksi di bagian bawah popover */
-    .hover-details {
-        padding: 16px;
-        background-color: #181a20;
-        color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        text-align: left;
-    }
-
-    /* Baris tombol aksi utama */
-    .hover-buttons {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-
-    .buttons-left {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-    }
-
-    /* Tombol Play Putih Lingkaran Sempurna */
-    .btn-hover-play {
-        width: 36px;
-        height: 36px;
-        background-color: #ffffff;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: background 0.2s;
-    }
-
-    .btn-hover-play:hover {
-        background-color: #e0e0e0;
-    }
-
-    .btn-hover-play svg {
-        width: 16px;
-        height: 16px;
-        fill: #000000;
-    }
-
-    /* Tombol Aksi Bulat Gelap (Tambah & Detail) */
-    .btn-hover-circle {
-        width: 36px;
-        height: 36px;
-        background-color: rgba(0, 0, 0, 0.4);
-        border: 1.5px solid rgba(255, 255, 255, 0.4);
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: border-color 0.2s, background-color 0.2s;
-    }
-
-    .btn-hover-circle:hover {
-        border-color: #ffffff;
-        background-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .btn-hover-circle svg {
-        width: 14px;
-        height: 14px;
-        fill: #ffffff;
-    }
-
-    /* Baris Metadata Rating & Episode */
-    .hover-meta {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .hover-age {
-        background-color: rgba(255, 255, 255, 0.15);
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 11px;
-        font-weight: 700;
-        color: #ffffff;
-    }
-
-    .hover-episodes {
-        font-size: 13px;
-        font-weight: 700;
-        color: #ffffff;
-    }
-
-    /* Baris Genre */
-    .hover-genres {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 6px;
-        font-size: 12px;
-        color: #b3b3b3;
-    }
-
-    .genre-dot {
-        width: 4px;
-        height: 4px;
-        background-color: #666666;
-        border-radius: 50%;
-        display: inline-block;
-        margin: 0 2px;
-    }
-
-    /* ==========================================
-    8. FOOTER HALAMAN
-    ========================================== */
     .footer {
-        background-color: #121318;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 60px 4%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .footer-left {
-        display: flex;
         flex-direction: column;
-        gap: 16px;
-    }
-
-    .footer-logo {
-        height: 24px;
-        align-self: flex-start;
-    }
-
-    .copyright {
-        font-size: 12px;
-        color: #666666;
+        gap: 40px;
     }
 
     .footer-links {
-        display: flex;
-        gap: 48px;
-    }
-
-    .footer-col {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .footer-col h4 {
-        font-size: 14px;
-        color: #ffffff;
-        margin-bottom: 4px;
-    }
-
-    .footer-col a {
-        color: #999999;
-        text-decoration: none;
-        font-size: 12px;
-    }
-
-    .footer-col a:hover {
-        color: #ffffff;
-    }
-
-    /* ==========================================
-    9. LAYOUT & RESPONSIVITAS SELULER (HP)
-    ========================================== */
-    @media (max-width: 768px) {
-        .nav-menu {
-            display: none;
-        }
-
-        .arrow-btn {
-            display: none;
-            /* Panah disembunyikan di HP karena menggunakan swipe/scroll gesture */
-        }
-
-        .hero-title {
-            font-size: 32px;
-        }
-
-        .movie-grid {
-            /* 1. Kita ubah jadi flex agar browser HP tidak bingung membaca koordinat geser */
-            display: flex !important;
-            flex-direction: row !important;
-
-            /* 2. Berikan gap antar kartu secara horizontal */
-            gap: 16px !important;
-            width: 100% !important;
-
-            /* 3. Hidupkan scroll horizontal secara mutlak */
-            overflow-x: scroll !important;
-            overflow-y: hidden !important;
-
-            /* 4. BEBASKAN sentuhan jari. Kita hapus touch-action: pan-y, 
-              kita ganti jadi auto agar browser HP bebas menggerakkan ke segala arah */
-            touch-action: auto !important;
-
-            /* 5. Matikan dulu magnet snap-nya untuk memastikan apakah ini yang bikin macet */
-            scroll-snap-type: none !important;
-
-            padding-bottom: 12px !important;
-
-            /* Sembunyikan scrollbar bawaan murni agar kembali bersih */
-            &::-webkit-scrollbar {
-                display: none !important;
-            }
-        }
-
-        /* 6. Atur ukuran kartu landscape secara pas (mengambil 65% lebar layar) */
-        .landscape-grid {
-            display: flex !important;
-        }
-
-        .landscape-grid .movie-card {
-            flex: 0 0 65% !important;
-            /* Mencegah kartu menyusut, paksa konstan di 65% */
-            max-width: 65% !important;
-        }
-
-        /* 7. Atur ukuran kartu portrait secara pas (mengambil 38% lebar layar) */
-        .portrait-grid {
-            display: flex !important;
-        }
-
-        .portrait-grid .movie-card {
-            flex: 0 0 38% !important;
-            /* Mencegah kartu menyusut, paksa konstan di 38% */
-            max-width: 38% !important;
-        }
-
-        .movie-card {
-            /* Matikan juga snap align-nya sementara */
-            scroll-snap-align: none !important;
-        }
-
-        /* Nonaktifkan popover hover berlebih di seluler agar tidak mengganggu usabilitas tap */
-        .card-hover-info {
-            display: none !important;
-        }
-
-        .footer {
-            flex-direction: column;
-            gap: 40px;
-        }
-
-        .footer-links {
-            flex-wrap: wrap;
-            gap: 24px;
-        }
+        flex-wrap: wrap;
+        gap: 24px;
     }
 }
