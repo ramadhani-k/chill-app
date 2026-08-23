@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Navbar from '../components/organisms/Navbar';
+import { addMovie, updateMovie, deleteMovie } from '../services/api/moviesApi';
 import '../style-beranda.css';
 
 export default function MovieCrud({ movies, setMovies }) {
@@ -17,33 +18,40 @@ export default function MovieCrud({ movies, setMovies }) {
     if (!title.trim() || !genre.trim()) return;
 
     if (editingId !== null) {
-      // ubah film lama
-      setMovies(
-        movies.map((movie) =>
-          movie.id === editingId ? { ...movie, title, genre } : movie
-        )
-      );
-      setEditingId(null);
+      // ubah film lama via api
+      updateMovie(editingId, { title, genre })
+        .then((response) => {
+          setMovies(
+            movies.map((movie) =>
+              movie.id === editingId ? response.data : movie
+            )
+          );
+          setEditingId(null);
+          setTitle('');
+          setGenre('');
+        })
+        .catch((error) => {
+          console.error('gagal memperbarui film:', error);
+        });
     } else {
-      // tambah film baru (tambahkan di paling kiri / prepend)
-      const newMovie = {
-        id: Date.now(),
-        title,
-        genre,
-      };
-      setMovies([newMovie, ...movies]);
+      // tambah film baru via api (tambahkan di paling kiri / prepend)
+      addMovie({ title, genre })
+        .then((response) => {
+          setMovies([response.data, ...movies]);
+          setTitle('');
+          setGenre('');
+        })
+        .catch((error) => {
+          console.error('gagal menambah film:', error);
+        });
     }
-
-    // reset form
-    setTitle('');
-    setGenre('');
   };
 
   // isi form untuk edit
   const handleEdit = (movie) => {
     setEditingId(movie.id);
-    setTitle(movie.title);
-    setGenre(movie.genre);
+    setTitle(movie.title || '');
+    setGenre(movie.genre || '');
   };
 
   // batal edit
@@ -53,9 +61,15 @@ export default function MovieCrud({ movies, setMovies }) {
     setGenre('');
   };
 
-  // hapus film
+  // hapus film via api
   const handleDelete = (id) => {
-    setMovies(movies.filter((movie) => movie.id !== id));
+    deleteMovie(id)
+      .then(() => {
+        setMovies(movies.filter((movie) => movie.id !== id));
+      })
+      .catch((error) => {
+        console.error('gagal menghapus film:', error);
+      });
   };
 
   return (
