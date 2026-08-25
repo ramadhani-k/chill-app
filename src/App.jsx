@@ -1,25 +1,13 @@
-import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Homepage from './pages/Homepage';
 import MovieCrud from './pages/MovieCrud';
-import { getMovies } from './services/api/moviesApi';
+import useMovies from './hooks/useMovies';
 
 function App() {
-  // state global untuk simpan daftar film
-  const [movies, setMovies] = useState([]);
-
-  // ambil data awal film dari mockapi
-  useEffect(() => {
-    getMovies()
-      .then((response) => {
-        setMovies(response.data);
-      })
-      .catch((error) => {
-        console.error('gagal mengambil data film dari api:', error);
-      });
-  }, []);
+  // panggil custom hook useMovies untuk dapatkan movies dan fungsi crud
+  const movieHook = useMovies();
 
   return (
     <Router>
@@ -34,10 +22,20 @@ function App() {
         <Route path="/register" element={<Register />} />
         
         {/* rute beranda */}
-        <Route path="/beranda" element={<Homepage movies={movies} />} />
+        <Route path="/beranda" element={<Homepage movies={movieHook.movies} />} />
 
         {/* rute crud kelola film */}
-        <Route path="/crud" element={<MovieCrud movies={movies} setMovies={setMovies} />} />
+        <Route
+          path="/crud"
+          element={
+            <MovieCrud
+              movies={movieHook.movies}
+              addMovie={movieHook.addMovie}
+              updateMovie={movieHook.updateMovie}
+              deleteMovie={movieHook.deleteMovie}
+            />
+          }
+        />
       </Routes>
     </Router>
   );
