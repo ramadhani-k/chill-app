@@ -1,8 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/organisms/Navbar';
+import useMovieStore from '../store/useMovieStore';
 import '../style-beranda.css';
 
-export default function MovieCrud({ movies = [], addMovie, updateMovie, deleteMovie }) {
+export default function MovieCrud() {
+  // ambil state dan fungsi crud langsung dari store zustand
+  const movies = useMovieStore((state) => state.movies);
+  const fetchMovies = useMovieStore((state) => state.fetchMovies);
+  const addMovie = useMovieStore((state) => state.addMovie);
+  const updateMovie = useMovieStore((state) => state.updateMovie);
+  const deleteMovie = useMovieStore((state) => state.deleteMovie);
+
   // state untuk input form
   const [title, setTitle] = useState('');
   const [genre, setGenre] = useState('');
@@ -11,13 +19,18 @@ export default function MovieCrud({ movies = [], addMovie, updateMovie, deleteMo
   // pilihan genre film
   const genres = ['Aksi', 'Anak-anak', 'Anime', 'Drama', 'Horor', 'Komedi', 'Romantis', 'Sci-Fi', 'Thriller'];
 
+  // ambil data film dari api saat komponen dimuat
+  useEffect(() => {
+    fetchMovies();
+  }, [fetchMovies]);
+
   // jalankan submit form (tambah atau edit film)
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim() || !genre.trim()) return;
 
     if (editingId !== null) {
-      // panggil fungsi update dari hook
+      // panggil fungsi update dari store
       updateMovie(editingId, { title, genre })
         .then(() => {
           setEditingId(null);
@@ -28,7 +41,7 @@ export default function MovieCrud({ movies = [], addMovie, updateMovie, deleteMo
           console.error('gagal memperbarui film:', error);
         });
     } else {
-      // panggil fungsi tambah dari hook
+      // panggil fungsi tambah dari store
       addMovie({ title, genre })
         .then(() => {
           setTitle('');
@@ -54,7 +67,7 @@ export default function MovieCrud({ movies = [], addMovie, updateMovie, deleteMo
     setGenre('');
   };
 
-  // panggil fungsi hapus dari hook
+  // panggil fungsi hapus dari store
   const handleDelete = (id) => {
     deleteMovie(id).catch((error) => {
       console.error('gagal menghapus film:', error);
