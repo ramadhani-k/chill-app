@@ -3,12 +3,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Homepage from './pages/Homepage';
 import MovieCrud from './pages/MovieCrud';
-import useMovies from './hooks/useMovies';
 
 function App() {
-  // panggil custom hook useMovies untuk dapatkan movies dan fungsi crud
-  const movieHook = useMovies();
-
   return (
     <Router>
       <Routes>
@@ -22,20 +18,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         
         {/* rute beranda */}
-        <Route path="/beranda" element={<Homepage movies={movieHook.movies} />} />
+        <Route path="/beranda" element={<Homepage />} />
 
         {/* rute crud kelola film */}
-        <Route
-          path="/crud"
-          element={
-            <MovieCrud
-              movies={movieHook.movies}
-              addMovie={movieHook.addMovie}
-              updateMovie={movieHook.updateMovie}
-              deleteMovie={movieHook.deleteMovie}
-            />
-          }
-        />
+        <Route path="/crud" element={<MovieCrud />} />
       </Routes>
     </Router>
   );

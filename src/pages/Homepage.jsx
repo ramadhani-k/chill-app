@@ -1,9 +1,22 @@
+import { useEffect } from 'react';
 import Navbar from '../components/organisms/Navbar';
 import HeroBanner from '../components/organisms/HeroBanner';
 import MovieSection from '../components/organisms/MovieSection';
+import useMovieStore from '../store/useMovieStore';
 
-export default function Homepage({ movies = [] }) {
-    // data film lanjutan dari props global
+export default function Homepage() {
+    // ambil state movies dan fungsi fetchMovies dari store zustand
+    const movies = useMovieStore((state) => state.movies);
+    const fetchMovies = useMovieStore((state) => state.fetchMovies);
+
+    // panggil fetchMovies jika data movies masih kosong
+    useEffect(() => {
+        if (movies.length === 0) {
+            fetchMovies();
+        }
+    }, [movies.length, fetchMovies]);
+
+    // data film lanjutan dari state zustand
     const melanjutkanTontonData = movies.map((movie) => ({
         title: movie.title,
         image: movie.image,
