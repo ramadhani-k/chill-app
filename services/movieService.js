@@ -16,21 +16,13 @@ export const getMovieById = async (id) => {
 
 // service dml untuk menambah film baru (insert)
 export const createMovie = async (movieData) => {
-  const { title, genre, rating, description, image, duration, release_year } = movieData;
+  const { title, badge, genre, isInteractive } = movieData;
   const query = `
-    INSERT INTO movies (title, genre, rating, description, image, duration, release_year)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    INSERT INTO movies (title, badge, genre, isInteractive)
+    VALUES ($1, $2, $3, $4)
     RETURNING *
   `;
-  const values = [
-    title,
-    genre || null,
-    rating || null,
-    description || null,
-    image || null,
-    duration || null,
-    release_year || null
-  ];
+  const values = [title, badge, genre, isInteractive];
   const result = await pool.query(query, values);
   return result.rows[0];
 };
@@ -42,21 +34,18 @@ export const updateMovie = async (id, movieData) => {
     return null;
   }
 
-  const title = movieData.title !== undefined ? movieData.title : existingMovie.title;
-  const genre = movieData.genre !== undefined ? movieData.genre : existingMovie.genre;
-  const rating = movieData.rating !== undefined ? movieData.rating : existingMovie.rating;
-  const description = movieData.description !== undefined ? movieData.description : existingMovie.description;
-  const image = movieData.image !== undefined ? movieData.image : existingMovie.image;
-  const duration = movieData.duration !== undefined ? movieData.duration : existingMovie.duration;
-  const release_year = movieData.release_year !== undefined ? movieData.release_year : existingMovie.release_year;
+  const title = movieData.title ?? existingMovie.title;
+  const badge = movieData.badge ?? existingMovie.badge;
+  const genre = movieData.genre ?? existingMovie.genre;
+  const isInteractive = movieData.isInteractive ?? existingMovie.isInteractive;
 
   const query = `
     UPDATE movies
-    SET title = $1, genre = $2, rating = $3, description = $4, image = $5, duration = $6, release_year = $7
-    WHERE id = $8
+    SET title = $1, badge = $2, genre = $3, isInteractive = $4
+    WHERE id = $5
     RETURNING *
   `;
-  const values = [title, genre, rating, description, image, duration, release_year, id];
+  const values = [title, badge, genre, isInteractive, id];
   const result = await pool.query(query, values);
   return result.rows[0];
 };
