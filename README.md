@@ -1,90 +1,131 @@
-# CHILL - Movie Streaming Web Application
+# CHILL - Movie Streaming Web Application & Backend API
 
-A React-based movie application featuring user authentication pages (Login and Register), an interactive Homepage with movie carousels and details, and a Movie CRUD management page powered by Zustand state management.
+A fullstack application featuring a React frontend (styled with Tailwind CSS and Zustand state management) and a Node.js + Express backend REST API connected to a PostgreSQL database.
 
 ## Features
 
+### Backend REST API
+- **Database Connection**: PostgreSQL database integration using `pg.Pool` configured via `.env`.
+- **DML Services**: Clean architecture service functions (`getAllMovies`, `getMovieById`, `createMovie`, `updateMovie`, `deleteMovie`).
+- **REST Endpoints**:
+  - `GET /movies` - Retrieve all movies.
+  - `GET /movie/:id` - Retrieve a specific movie by ID.
+  - `POST /movie` - Add a new movie.
+  - `PATCH /movie/:id` - Update existing movie details.
+  - `DELETE /movie/:id` - Delete a movie by ID.
+- Ready for testing via Postman or HTTP client.
+
+### Frontend Application
 - **Authentication**:
   - Login page with username and password input toggle.
   - Register page with password confirmation toggle.
-  - Form submission redirects smoothly to the Homepage (`/beranda`).
 - **Homepage (`/beranda`)**:
-  - Sticky Navigation Bar with profile dropdown menu.
-  - Hero banner with action buttons.
-  - Categorized horizontal movie carousels with smooth arrow navigation.
-  - Interactive movie hover cards displaying additional details.
+  - Navigation bar with user profile dropdown.
+  - Hero banner and categorized movie carousels.
 - **Movie Management / CRUD Page (`/crud`)**:
-  - State management migrated to **Zustand** (`src/store/useMovieStore.js`) connected with direct API sync.
-  - **Create**: Add new movies with title and genre selection.
-  - **Read**: Display all registered movies in a structured table format with title, genre badge, and ID.
-  - **Update**: Edit existing movie details (title and genre) with inline form state updating.
-  - **Delete**: Remove movies from the list instantly.
-  - Styled with Tailwind CSS matching the application dark theme aesthetics.
-- **Responsive Layout**: Designed for both desktop and mobile viewports.
+  - State management powered by **Zustand** (`src/store/useMovieStore.js`).
+  - Create, Read, Update, and Delete movie entries.
 
-## Prerequisites
+---
 
-Ensure you have Node.js (v18 or higher recommended) and `npm` installed on your system.
+## Environment Variables Configuration (`.env`)
 
-## Setup & Installation
+Create a `.env` file in the root directory (refer to `.env.example`):
 
-1. **Clone the repository** (if not already done):
-   ```bash
-   git clone <repository-url>
-   cd chill-app
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-## Development
-
-To start the Vite development server locally:
-
-```bash
-npm run dev
+```env
+PORT=5000
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_NAME=movie_db
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/movie_db
+VITE_API_URL=http://localhost:5000
 ```
 
-Open your browser and navigate to `http://localhost:5173` (or the URL provided in the terminal).
+---
 
-## Building for Production
+## Database Setup
 
-To compile and build the application for production:
+To set up the PostgreSQL database manually:
 
-```bash
-npm run build
+```sql
+CREATE DATABASE movie_db;
+
+\c movie_db;
+
+CREATE TABLE movies (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    genre VARCHAR(100),
+    rating NUMERIC(3, 1),
+    description TEXT,
+    image VARCHAR(255),
+    duration VARCHAR(50),
+    release_year INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 ```
 
-To preview the built assets locally:
-
-```bash
-npm run preview
-```
-
-## Linting
-
-To run ESLint check across the codebase:
-
-```bash
-npm run lint
-```
+---
 
 ## Project Structure
 
 ```
-src/
-├── assets/          # Static assets
-├── components/
-│   ├── atoms/       # Base components (Button, Input, Label, MovieCard)
-│   ├── molecules/   # Compound components (DropdownProfile, InputGroup, MovieHoverInfo)
-│   └── organisms/   # Complex layout components (HeroBanner, LoginForm, MovieSection, Navbar, RegisterForm)
-├── pages/           # Page components (Homepage, Login, Register, MovieCrud)
-├── services/        # API service configurations and modules
-├── store/           # Zustand state store definitions (useMovieStore.js)
-├── App.jsx          # Router & route definitions
-├── main.jsx         # Application entry point
-├── index.css        # Global CSS & Tailwind styling
-└── style-beranda.css# Homepage & carousel styling
+.
+├── db.js                   # PostgreSQL database connection pool configuration
+├── server.js               # Express server entry point & middleware setup
+├── routes/
+│   └── movieRoutes.js      # REST API route handlers
+├── services/
+│   └── movieService.js     # Database DML query service functions
+├── src/                    # Frontend React application codebase
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   └── store/
+├── .env                    # Environment variables file
+├── .env.example            # Environment variables example template
+└── README.md
 ```
+
+---
+
+## Running the Application
+
+### 1. Install Dependencies
+```bash
+npm install
+```
+
+### 2. Start Backend Server
+To start the Node.js Express server:
+```bash
+node server.js
+```
+The server will run at `http://localhost:5000`.
+
+### 3. Start Frontend App
+To run the Vite development server:
+```bash
+npm run dev
+```
+
+---
+
+## API Endpoints Testing with Postman
+
+| Method | Endpoint | Request Body Example / Notes |
+|---|---|---|
+| `GET` | `/movies` | - |
+| `GET` | `/movie/:id` | - |
+| `POST` | `/movie` | `{ "title": "Inception", "genre": "Sci-Fi", "rating": 8.8 }` |
+| `PATCH` | `/movie/:id` | `{ "title": "Inception Updated", "genre": "Action" }` |
+| `DELETE` | `/movie/:id` | - |
+
+---
+
+## Linting & Building
+
+- Run linter: `npm run lint`
+- Build frontend: `npm run build`
