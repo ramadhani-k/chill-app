@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-// get /movies - mengambil semua data film
+// get /movies - mengambil daftar film dengan filter, search, sort, dan pagination dinamis
 router.get('/movies', async (req, res) => {
   try {
-    const movies = await getAllMovies();
+    const movies = await getAllMovies(req.query);
     res.status(200).json({
       status: 'success',
       data: movies,

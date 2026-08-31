@@ -1,9 +1,56 @@
 import pool from '../db.js';
 
-// service dml untuk mengambil semua film (select all)
-export const getAllMovies = async () => {
-  const query = 'SELECT * FROM movies ORDER BY id ASC';
-  const result = await pool.query(query);
+// service dml untuk mengambil film dengan filter, search, sort, dan pagination dinamis
+export const getAllMovies = async (queryParams = {}) => {
+  const { genre, search, sortBy, page, limit } = queryParams;
+
+  let query = 'SELECT * FROM movies';
+  const conditions = [];
+  const values = [];
+
+  // filter berdasarkan genre
+  if (genre) {
+    values.push(genre);
+    conditions.push(`genre = $${values.length}`);
+  }
+
+  // pencarian berdasarkan title (case-insensitive)
+  if (search) {
+    values.push(`%${search}%`);
+    conditions.push(`title ILIKE $${values.length}`);
+  }
+
+  if (conditions.length > 0) {
+    query += ' WHERE ' + conditions.join(' AND ');
+  }
+
+  // sorting (contoh format sortBy: title:asc, rating:desc, release_year:desc, id:asc)
+  const validColumns = ['id', 'title', 'genre', 'rating', 'release_year', 'created_at'];
+  if (sortBy) {
+    const [column, order] = sortBy.split(':');
+    const cleanColumn = validColumns.includes(column) ? column : 'id';
+    const cleanOrder = order && order.toLowerCase() === 'desc' ? 'DESC' : 'ASC';
+    query += ` ORDER BY ${cleanColumn} ${cleanOrder}`;
+  } else {
+    query += ' ORDER BY id ASC';
+  }
+
+  // pagination (limit & offset)
+  const pageNum = Number(page) > 0 ? Number(page) : null;
+  const limitNum = Number(limit) > 0 ? Number(limit) : null;
+
+  if (limitNum) {
+    values.push(limitNum);
+    query += ` LIMIT $${values.length}`;
+
+    if (pageNum) {
+      const offset = (pageNum - 1) * limitNum;
+      values.push(offset);
+      query += ` OFFSET $${values.length}`;
+    }
+  }
+
+  const result = await pool.query(query, values);
   return result.rows;
 };
 
